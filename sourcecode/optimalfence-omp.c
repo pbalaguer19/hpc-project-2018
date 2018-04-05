@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 	char dest[255],outfile[255];
 	double tpivot1=0,tpivot2=0; //time counting
 	struct timeval tim;
-	
+
 	if (argc<2 || argc>3)
 		printf("Error Argumentos");
 
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (argc==2)
-	{	
+	{
 		len=strlen(argv[1]);
 		posicion = strchr(argv[1], '.');
 		memset(dest, '\0', sizeof(dest));
@@ -143,11 +143,11 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 	}
-	
-	gettimeofday(&tim, NULL);	
+
+	gettimeofday(&tim, NULL);
     tpivot2 = (tim.tv_sec+(tim.tv_usec/1000000.0));
     printf("\n%.6lf\n", tpivot2-tpivot1);
-	
+
 	exit(0);
 }
 
@@ -241,7 +241,7 @@ bool GenerarFicheroSalida(TListaArboles Optimo, char *PathFicOut)
 		perror("writing value of the Remaining Trees");
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -256,7 +256,7 @@ bool CalcularCercaOptima(PtrListaArboles Optimo)
 
 	// Sort trees in increasing order by x,y
     OrdenarArboles();
-    
+
     /* Computing optimal */
     Optimo->NumArboles = 0;
     Optimo->Coste = DMaximoCoste;
@@ -266,11 +266,11 @@ bool CalcularCercaOptima(PtrListaArboles Optimo)
 }
 
 
-// 
+//
 void OrdenarArboles()
 {
   int a,b;
-  
+
 	for(a=0; a<(ArbolesEntrada.NumArboles-1); a++)
 	{
 		for(b=a; b<ArbolesEntrada.NumArboles; b++)
@@ -311,7 +311,7 @@ void OrdenarArboles()
 bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, PtrListaArboles Optimo)
 {
 	int MejorCombinacion=0, CosteMejorCombinacion;
-	int Coste;
+	int Coste, Combinacion;
     int CosteMejorCombinacionParcial[4], MejorCombinacionParcial[4];
 
 	TListaArboles CombinacionArboles;
@@ -322,18 +322,11 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
     #pragma omp parallel
     {
         int id = omp_get_thread_num();
-
-        int bucketSize = (UltimaCombinacion-1)/omp_get_num_threads();
-        int rest = (UltimaCombinacion-1) % omp_get_num_threads();
-        int primeraCombinacion, ultimaCombinacion;
-
-        primeraCombinacion = bucketSize * id + 1;
-        ultimaCombinacion = primeraCombinacion + bucketSize;
-
-        if (rest > 0 && id == omp_get_num_threads()-1) ultimaCombinacion = UltimaCombinacion;
-
         CosteMejorCombinacionParcial[id] = Optimo->Coste;
-        for (int Combinacion=primeraCombinacion; Combinacion<ultimaCombinacion; Combinacion++) {
+
+				#pragma omp for
+        for (Combinacion=PrimeraCombinacion; Combinacion<UltimaCombinacion; Combinacion++) {
+					printf("%d -> %d\n", id, Combinacion);
             Coste = EvaluarCombinacionListaArboles(Combinacion);
             if ( Coste < CosteMejorCombinacionParcial[id] ) {
                 CosteMejorCombinacionParcial[id] = Coste;
@@ -381,7 +374,7 @@ int EvaluarCombinacionListaArboles(int Combinacion)
 
 	// Convertimos la combinacin al vector de arboles no talados.
 	NumArboles = ConvertirCombinacionToArboles(Combinacion, &CombinacionArboles);
-  
+
 	// Obtener el vector de coordenadas de arboles no talados.
 	ObtenerListaCoordenadasArboles(CombinacionArboles, CoordArboles);
 
@@ -403,7 +396,7 @@ int EvaluarCombinacionListaArboles(int Combinacion)
 
 	// Evaluar el coste de los arboles talados.
 	CosteCombinacion = CalcularCosteCombinacion(CombinacionArbolesTalados);
-  
+
 	return CosteCombinacion;
 }
 
@@ -468,17 +461,17 @@ void ObtenerListaCoordenadasArboles(TListaArboles CombinacionArboles, TVectorCoo
 }
 
 
-	
+
 float CalcularLongitudCerca(TVectorCoordenadas CoordenadasCerca, int SizeCerca)
 {
 	int x;
 	float coste;
-	
+
 	for (x=0;x<(SizeCerca-1);x++)
 	{
 		coste+= CalcularDistancia(CoordenadasCerca[x].x, CoordenadasCerca[x].y, CoordenadasCerca[x+1].x, CoordenadasCerca[x+1].y);
 	}
-	
+
 	return coste;
 }
 
@@ -495,12 +488,12 @@ int CalcularMaderaArbolesTalados(TListaArboles CombinacionArboles)
 {
 	int a;
 	int LongitudTotal=0;
-	
+
 	for (a=0;a<CombinacionArboles.NumArboles;a++)
 	{
 		LongitudTotal += ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].Longitud;
 	}
-	
+
 	return(LongitudTotal);
 }
 
@@ -510,12 +503,12 @@ int CalcularCosteCombinacion(TListaArboles CombinacionArboles)
 {
 	int a;
 	int CosteTotal=0;
-	
+
 	for (a=0;a<CombinacionArboles.NumArboles;a++)
 	{
 		CosteTotal += ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].Valor;
 	}
-	
+
 	return(CosteTotal);
 }
 
@@ -529,5 +522,5 @@ void MostrarArboles(TListaArboles CombinacionArboles)
 		// printf("%d ",ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].IdArbol);
 
   // for (;a<ArbolesEntrada.NumArboles;a++)
-    // printf("  ");  
+    // printf("  ");
 }

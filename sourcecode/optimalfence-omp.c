@@ -8,70 +8,58 @@
 
 #include "ConvexHull.h"
 
-#define DMaxArboles 	25
+#define DMaxArboles 25
 #define DMaximoCoste 999999
 
-
-  //////////////////////////
- // Estructuras de datos //
+//////////////////////////
+// Estructuras de datos //
 //////////////////////////
 
-
 // Tree structure definition.
-struct  Arbol
+struct Arbol
 {
-	int	  IdArbol;
-	Point Coord;			// tree position
-	int Valor;				// Value
-	int Longitud;			// wood quantity
+	int IdArbol;
+	Point Coord;  // tree position
+	int Valor;	// Value
+	int Longitud; // wood quantity
 };
 typedef struct Arbol TArbol, *PtrArbol;
-
-
 
 // Forest structure definition.
 struct Bosque
 {
-	int 		NumArboles;
-	TArbol 	Arboles[DMaxArboles];
+	int NumArboles;
+	TArbol Arboles[DMaxArboles];
 };
 typedef struct Bosque TBosque, *PtrBosque;
-
-
 
 // Problem respresentation
 struct ListaArboles
 {
-	int 		NumArboles;
- 	float		Coste;
-	float		CosteArbolesCortados;
-	float		CosteArbolesRestantes;
-	float		LongitudCerca;
-	float		MaderaSobrante;
-	int 		Arboles[DMaxArboles];
+	int NumArboles;
+	float Coste;
+	float CosteArbolesCortados;
+	float CosteArbolesRestantes;
+	float LongitudCerca;
+	float MaderaSobrante;
+	int Arboles[DMaxArboles];
 };
 typedef struct ListaArboles TListaArboles, *PtrListaArboles;
-
-
 
 // static coordinates.
 typedef Point TVectorCoordenadas[DMaxArboles], *PtrVectorCoordenadas;
 
+typedef enum { false,
+			   true } bool;
 
-
-typedef enum {false, true} bool;
-
-
-  ////////////////////////
- // Variables Globales //
+////////////////////////
+// Variables Globales //
 ////////////////////////
 
 TBosque ArbolesEntrada;
 
-
-
-  //////////////////////////
- // Funtion definition   //
+//////////////////////////
+// Funtion definition   //
 //////////////////////////
 bool LeerFicheroEntrada(char *PathFicIn);
 bool GenerarFicheroSalida(TListaArboles optimo, char *PathFicOut);
@@ -88,25 +76,23 @@ int CalcularMaderaArbolesTalados(TListaArboles CombinacionArboles);
 int CalcularCosteCombinacion(TListaArboles CombinacionArboles);
 void MostrarArboles(TListaArboles CombinacionArboles);
 
-
-
 int main(int argc, char *argv[])
 {
 	TListaArboles Optimo;
 	char *posicion;
 	int namesrclen;
 	unsigned long len;
-	char dest[255],outfile[255];
-	double tpivot1=0,tpivot2=0; //time counting
+	char dest[255], outfile[255];
+	double tpivot1 = 0, tpivot2 = 0; //time counting
 	struct timeval tim;
 
-	if (argc<2 || argc>3)
+	if (argc < 2 || argc > 3)
 		printf("Error Argumentos");
 
-    omp_set_num_threads(4);
+	omp_set_num_threads(4);
 	//Capture first token time
-    gettimeofday(&tim, NULL);
-    tpivot1 = tim.tv_sec+(tim.tv_usec/1000000.0);
+	gettimeofday(&tim, NULL);
+	tpivot1 = tim.tv_sec + (tim.tv_usec / 1000000.0);
 
 	if (!LeerFicheroEntrada(argv[1]))
 	{
@@ -120,14 +106,14 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	if (argc==2)
+	if (argc == 2)
 	{
-		len=strlen(argv[1]);
+		len = strlen(argv[1]);
 		posicion = strchr(argv[1], '.');
 		memset(dest, '\0', sizeof(dest));
-		namesrclen=posicion-argv[1];
-		strncpy(dest,argv[1],namesrclen);
-		sprintf(outfile,"%s.res", dest);
+		namesrclen = posicion - argv[1];
+		strncpy(dest, argv[1], namesrclen);
+		sprintf(outfile, "%s.res", dest);
 
 		if (!GenerarFicheroSalida(Optimo, outfile))
 		{
@@ -145,21 +131,19 @@ int main(int argc, char *argv[])
 	}
 
 	gettimeofday(&tim, NULL);
-    tpivot2 = (tim.tv_sec+(tim.tv_usec/1000000.0));
-    printf("\n%.6lf\n", tpivot2-tpivot1);
+	tpivot2 = (tim.tv_sec + (tim.tv_usec / 1000000.0));
+	printf("\n%.6lf\n", tpivot2 - tpivot1);
 
 	exit(0);
 }
-
-
 
 bool LeerFicheroEntrada(char *PathFicIn)
 {
 	FILE *FicIn;
 	int a;
 
-	FicIn=fopen(PathFicIn,"r");
-	if (FicIn==NULL)
+	FicIn = fopen(PathFicIn, "r");
+	if (FicIn == NULL)
 	{
 		perror("Opening input file");
 		return false;
@@ -167,54 +151,52 @@ bool LeerFicheroEntrada(char *PathFicIn)
 	printf("Input data:\n");
 
 	// Reading the number of trees in the input woods.
-	if (fscanf(FicIn, "%d", &(ArbolesEntrada.NumArboles))<1)
+	if (fscanf(FicIn, "%d", &(ArbolesEntrada.NumArboles)) < 1)
 	{
 		perror("Reading input woods");
 		return false;
 	}
-	printf("\tTrees: %d.\n",ArbolesEntrada.NumArboles);
+	printf("\tTrees: %d.\n", ArbolesEntrada.NumArboles);
 
 	// Reading tree atributes.
-	for(a=0;a<ArbolesEntrada.NumArboles;a++)
+	for (a = 0; a < ArbolesEntrada.NumArboles; a++)
 	{
-		ArbolesEntrada.Arboles[a].IdArbol=a+1;
+		ArbolesEntrada.Arboles[a].IdArbol = a + 1;
 		// Reading  x, y, value, Longitud.
-		if (fscanf(FicIn, "%d %d %d %d",&(ArbolesEntrada.Arboles[a].Coord.x), &(ArbolesEntrada.Arboles[a].Coord.y), &(ArbolesEntrada.Arboles[a].Valor), &(ArbolesEntrada.Arboles[a].Longitud))<4)
+		if (fscanf(FicIn, "%d %d %d %d", &(ArbolesEntrada.Arboles[a].Coord.x), &(ArbolesEntrada.Arboles[a].Coord.y), &(ArbolesEntrada.Arboles[a].Valor), &(ArbolesEntrada.Arboles[a].Longitud)) < 4)
 		{
 			perror("Reading tree info");
 			return false;
 		}
-		printf("\tTree %d-> (%d,%d) Value:%d, Long:%d.\n",a+1,ArbolesEntrada.Arboles[a].Coord.x, ArbolesEntrada.Arboles[a].Coord.y, ArbolesEntrada.Arboles[a].Valor, ArbolesEntrada.Arboles[a].Longitud);
+		printf("\tTree %d-> (%d,%d) Value:%d, Long:%d.\n", a + 1, ArbolesEntrada.Arboles[a].Coord.x, ArbolesEntrada.Arboles[a].Coord.y, ArbolesEntrada.Arboles[a].Valor, ArbolesEntrada.Arboles[a].Longitud);
 	}
 
 	return true;
 }
-
-
 
 bool GenerarFicheroSalida(TListaArboles Optimo, char *PathFicOut)
 {
 	FILE *FicOut;
 	int a;
 
-	FicOut=fopen(PathFicOut,"w+");
-	if (FicOut==NULL)
+	FicOut = fopen(PathFicOut, "w+");
+	if (FicOut == NULL)
 	{
 		perror("Opening output file.");
 		return false;
 	}
 
 	// Writting the number of trees to cut.
-	if (fprintf(FicOut, "Cutting %3d trees           : ", Optimo.NumArboles)<1)
+	if (fprintf(FicOut, "Cutting %3d trees           : ", Optimo.NumArboles) < 1)
 	{
 		perror("writing number of cutting trees");
 		return false;
 	}
 
-	for(a=0;a<Optimo.NumArboles;a++)
+	for (a = 0; a < Optimo.NumArboles; a++)
 	{
 		// Writing the id of a tree to cut.
-		if (fprintf(FicOut, "%3d ",ArbolesEntrada.Arboles[Optimo.Arboles[a]].IdArbol)<1)
+		if (fprintf(FicOut, "%3d ", ArbolesEntrada.Arboles[Optimo.Arboles[a]].IdArbol) < 1)
 		{
 			perror("writing id of a tree to cut.");
 			return false;
@@ -222,21 +204,21 @@ bool GenerarFicheroSalida(TListaArboles Optimo, char *PathFicOut)
 	}
 
 	// Writing the total missing wood
-	if (fprintf(FicOut, "\nFence long./missing Wood    : \t%6.2f (%6.2f)",   Optimo.LongitudCerca, Optimo.MaderaSobrante)<1)
+	if (fprintf(FicOut, "\nFence long./missing Wood    : \t%6.2f (%6.2f)", Optimo.LongitudCerca, Optimo.MaderaSobrante) < 1)
 	{
 		perror("writing total missing wood");
 		return false;
 	}
 
 	// Writing the cost of trees to cut
-	if (fprintf(FicOut, "\nValue of the cutted Trees   : \t%6.2f", Optimo.CosteArbolesCortados)<1)
+	if (fprintf(FicOut, "\nValue of the cutted Trees   : \t%6.2f", Optimo.CosteArbolesCortados) < 1)
 	{
 		perror("writing value of the cutted Trees");
 		return false;
 	}
 
 	// Writing the value of the remaining trees
-	if (fprintf(FicOut, "\nValue of the Remaining Trees: \t%6.2f\n", Optimo.CosteArbolesRestantes)<1)
+	if (fprintf(FicOut, "\nValue of the Remaining Trees: \t%6.2f\n", Optimo.CosteArbolesRestantes) < 1)
 	{
 		perror("writing value of the Remaining Trees");
 		return false;
@@ -245,38 +227,35 @@ bool GenerarFicheroSalida(TListaArboles Optimo, char *PathFicOut)
 	return true;
 }
 
-
-
 bool CalcularCercaOptima(PtrListaArboles Optimo)
 {
 	int MaxCombinaciones;
 
 	/* Computing total combinations */
-	MaxCombinaciones = (int) pow(2.0,ArbolesEntrada.NumArboles);
+	MaxCombinaciones = (int)pow(2.0, ArbolesEntrada.NumArboles);
 
 	// Sort trees in increasing order by x,y
-    OrdenarArboles();
+	OrdenarArboles();
 
-    /* Computing optimal */
-    Optimo->NumArboles = 0;
-    Optimo->Coste = DMaximoCoste;
-    CalcularCombinacionOptima(1, MaxCombinaciones, Optimo);
+	/* Computing optimal */
+	Optimo->NumArboles = 0;
+	Optimo->Coste = DMaximoCoste;
+	CalcularCombinacionOptima(1, MaxCombinaciones, Optimo);
 
 	return true;
 }
 
-
 //
 void OrdenarArboles()
 {
-  int a,b;
+	int a, b;
 
-	for(a=0; a<(ArbolesEntrada.NumArboles-1); a++)
+	for (a = 0; a < (ArbolesEntrada.NumArboles - 1); a++)
 	{
-		for(b=a; b<ArbolesEntrada.NumArboles; b++)
+		for (b = a; b < ArbolesEntrada.NumArboles; b++)
 		{
-			if ( ArbolesEntrada.Arboles[b].Coord.x < ArbolesEntrada.Arboles[a].Coord.x ||
-				 (ArbolesEntrada.Arboles[b].Coord.x == ArbolesEntrada.Arboles[a].Coord.x && ArbolesEntrada.Arboles[b].Coord.y < ArbolesEntrada.Arboles[a].Coord.y) )
+			if (ArbolesEntrada.Arboles[b].Coord.x < ArbolesEntrada.Arboles[a].Coord.x ||
+				(ArbolesEntrada.Arboles[b].Coord.x == ArbolesEntrada.Arboles[a].Coord.x && ArbolesEntrada.Arboles[b].Coord.y < ArbolesEntrada.Arboles[a].Coord.y))
 			{
 				TArbol aux;
 
@@ -305,46 +284,47 @@ void OrdenarArboles()
 	}
 }
 
-
-
 // Computing the optimal combination in a range
 bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, PtrListaArboles Optimo)
 {
-	int MejorCombinacion=0, CosteMejorCombinacion;
+	int MejorCombinacion = 0, CosteMejorCombinacion;
 	int Coste, Combinacion;
-    int CosteMejorCombinacionParcial[4], MejorCombinacionParcial[4];
+	int CosteMejorCombinacionParcial[4], MejorCombinacionParcial[4];
 
 	TListaArboles CombinacionArboles;
 	TVectorCoordenadas CoordArboles, CercaArboles;
 	int NumArboles, PuntosCerca;
 	float MaderaArbolesTalados;
 
-    #pragma omp parallel
-    {
-        int id = omp_get_thread_num();
-        CosteMejorCombinacionParcial[id] = Optimo->Coste;
+#pragma omp parallel
+	{
+		int id = omp_get_thread_num();
+		CosteMejorCombinacionParcial[id] = Optimo->Coste;
 
-				#pragma omp for
-        for (Combinacion=PrimeraCombinacion; Combinacion<UltimaCombinacion; Combinacion++) {
-					printf("%d -> %d\n", id, Combinacion);
-            Coste = EvaluarCombinacionListaArboles(Combinacion);
-            if ( Coste < CosteMejorCombinacionParcial[id] ) {
-                CosteMejorCombinacionParcial[id] = Coste;
-                MejorCombinacionParcial[id] = Combinacion;
-            }
-        }
-    }
+#pragma omp for
+		for (Combinacion = PrimeraCombinacion; Combinacion < UltimaCombinacion; Combinacion++)
+		{
+			Coste = EvaluarCombinacionListaArboles(Combinacion);
+			if (Coste < CosteMejorCombinacionParcial[id])
+			{
+				CosteMejorCombinacionParcial[id] = Coste;
+				MejorCombinacionParcial[id] = Combinacion;
+			}
+		}
+	}
 
-    CosteMejorCombinacion = Optimo->Coste;
-    for(int i = 0; i < 4; i++){
-        if(CosteMejorCombinacion > CosteMejorCombinacionParcial[i]){
-            CosteMejorCombinacion = CosteMejorCombinacionParcial[i];
-            MejorCombinacion = MejorCombinacionParcial[i];
-        }
-    }
+	CosteMejorCombinacion = Optimo->Coste;
+	for (int i = 0; i < 4; i++)
+	{
+		if (CosteMejorCombinacion > CosteMejorCombinacionParcial[i])
+		{
+			CosteMejorCombinacion = CosteMejorCombinacionParcial[i];
+			MejorCombinacion = MejorCombinacionParcial[i];
+		}
+	}
 
 	if (CosteMejorCombinacion == Optimo->Coste)
-		return false;  // No se ha encontrado una combinacin mejor.
+		return false; // No se ha encontrado una combinacin mejor.
 
 	// Asignar combinacin encontrada.
 	ConvertirCombinacionToArbolesTalados(MejorCombinacion, Optimo);
@@ -352,7 +332,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 	// Calcular estadisticas óptimo.
 	NumArboles = ConvertirCombinacionToArboles(MejorCombinacion, &CombinacionArboles);
 	ObtenerListaCoordenadasArboles(CombinacionArboles, CoordArboles);
-	PuntosCerca = chainHull_2D( CoordArboles, NumArboles, CercaArboles );
+	PuntosCerca = chainHull_2D(CoordArboles, NumArboles, CercaArboles);
 
 	Optimo->LongitudCerca = CalcularLongitudCerca(CercaArboles, PuntosCerca);
 	MaderaArbolesTalados = CalcularMaderaArbolesTalados(*Optimo);
@@ -362,8 +342,6 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 
 	return true;
 }
-
-
 
 int EvaluarCombinacionListaArboles(int Combinacion)
 {
@@ -379,7 +357,7 @@ int EvaluarCombinacionListaArboles(int Combinacion)
 	ObtenerListaCoordenadasArboles(CombinacionArboles, CoordArboles);
 
 	// Calcular la cerca
-	PuntosCerca = chainHull_2D( CoordArboles, NumArboles, CercaArboles );
+	PuntosCerca = chainHull_2D(CoordArboles, NumArboles, CercaArboles);
 
 	/* Evaluar si obtenemos suficientes �boles para construir la cerca */
 	LongitudCerca = CalcularLongitudCerca(CercaArboles, PuntosCerca);
@@ -387,11 +365,12 @@ int EvaluarCombinacionListaArboles(int Combinacion)
 	// Evaluar la madera obtenida mediante los arboles talados.
 	// Convertimos la combinacin al vector de arboles no talados.
 	NumArbolesTalados = ConvertirCombinacionToArbolesTalados(Combinacion, &CombinacionArbolesTalados);
-    MostrarArboles(CombinacionArbolesTalados);
-    MaderaArbolesTalados = CalcularMaderaArbolesTalados(CombinacionArbolesTalados);
-	if (LongitudCerca > MaderaArbolesTalados) {
+	MostrarArboles(CombinacionArbolesTalados);
+	MaderaArbolesTalados = CalcularMaderaArbolesTalados(CombinacionArbolesTalados);
+	if (LongitudCerca > MaderaArbolesTalados)
+	{
 		// Los arboles cortados no tienen suficiente madera para construir la cerca.
-        return DMaximoCoste;
+		return DMaximoCoste;
 	}
 
 	// Evaluar el coste de los arboles talados.
@@ -400,127 +379,113 @@ int EvaluarCombinacionListaArboles(int Combinacion)
 	return CosteCombinacion;
 }
 
-
 int ConvertirCombinacionToArboles(int Combinacion, PtrListaArboles CombinacionArboles)
 {
-	int arbol=0;
+	int arbol = 0;
 
-	CombinacionArboles->NumArboles=0;
-	CombinacionArboles->Coste=0;
+	CombinacionArboles->NumArboles = 0;
+	CombinacionArboles->Coste = 0;
 
-	while (arbol<ArbolesEntrada.NumArboles)
+	while (arbol < ArbolesEntrada.NumArboles)
 	{
-		if ((Combinacion%2)==0)
+		if ((Combinacion % 2) == 0)
 		{
-			CombinacionArboles->Arboles[CombinacionArboles->NumArboles]=arbol;
+			CombinacionArboles->Arboles[CombinacionArboles->NumArboles] = arbol;
 			CombinacionArboles->NumArboles++;
-			CombinacionArboles->Coste+= ArbolesEntrada.Arboles[arbol].Valor;
+			CombinacionArboles->Coste += ArbolesEntrada.Arboles[arbol].Valor;
 		}
 		arbol++;
-		Combinacion = Combinacion>>1;
+		Combinacion = Combinacion >> 1;
 	}
 
 	return CombinacionArboles->NumArboles;
 }
 
-
 int ConvertirCombinacionToArbolesTalados(int Combinacion, PtrListaArboles CombinacionArbolesTalados)
 {
-	int arbol=0;
+	int arbol = 0;
 
-	CombinacionArbolesTalados->NumArboles=0;
-	CombinacionArbolesTalados->Coste=0;
+	CombinacionArbolesTalados->NumArboles = 0;
+	CombinacionArbolesTalados->Coste = 0;
 
-	while (arbol<ArbolesEntrada.NumArboles)
+	while (arbol < ArbolesEntrada.NumArboles)
 	{
-		if ((Combinacion%2)==1)
+		if ((Combinacion % 2) == 1)
 		{
-			CombinacionArbolesTalados->Arboles[CombinacionArbolesTalados->NumArboles]=arbol;
+			CombinacionArbolesTalados->Arboles[CombinacionArbolesTalados->NumArboles] = arbol;
 			CombinacionArbolesTalados->NumArboles++;
-			CombinacionArbolesTalados->Coste+= ArbolesEntrada.Arboles[arbol].Valor;
+			CombinacionArbolesTalados->Coste += ArbolesEntrada.Arboles[arbol].Valor;
 		}
 		arbol++;
-		Combinacion = Combinacion>>1;
+		Combinacion = Combinacion >> 1;
 	}
 
 	return CombinacionArbolesTalados->NumArboles;
 }
 
-
-
 void ObtenerListaCoordenadasArboles(TListaArboles CombinacionArboles, TVectorCoordenadas Coordenadas)
 {
 	int c, arbol;
 
-	for (c=0;c<CombinacionArboles.NumArboles;c++)
+	for (c = 0; c < CombinacionArboles.NumArboles; c++)
 	{
-    arbol=CombinacionArboles.Arboles[c];
+		arbol = CombinacionArboles.Arboles[c];
 		Coordenadas[c].x = ArbolesEntrada.Arboles[arbol].Coord.x;
 		Coordenadas[c].y = ArbolesEntrada.Arboles[arbol].Coord.y;
 	}
 }
-
-
 
 float CalcularLongitudCerca(TVectorCoordenadas CoordenadasCerca, int SizeCerca)
 {
 	int x;
 	float coste;
 
-	for (x=0;x<(SizeCerca-1);x++)
+	for (x = 0; x < (SizeCerca - 1); x++)
 	{
-		coste+= CalcularDistancia(CoordenadasCerca[x].x, CoordenadasCerca[x].y, CoordenadasCerca[x+1].x, CoordenadasCerca[x+1].y);
+		coste += CalcularDistancia(CoordenadasCerca[x].x, CoordenadasCerca[x].y, CoordenadasCerca[x + 1].x, CoordenadasCerca[x + 1].y);
 	}
 
 	return coste;
 }
 
-
-
 float CalcularDistancia(int x1, int y1, int x2, int y2)
 {
-	return(sqrt(pow((double)abs(x2-x1),2.0)+pow((double)abs(y2-y1),2.0)));
+	return (sqrt(pow((double)abs(x2 - x1), 2.0) + pow((double)abs(y2 - y1), 2.0)));
 }
-
-
 
 int CalcularMaderaArbolesTalados(TListaArboles CombinacionArboles)
 {
 	int a;
-	int LongitudTotal=0;
+	int LongitudTotal = 0;
 
-	for (a=0;a<CombinacionArboles.NumArboles;a++)
+	for (a = 0; a < CombinacionArboles.NumArboles; a++)
 	{
 		LongitudTotal += ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].Longitud;
 	}
 
-	return(LongitudTotal);
+	return (LongitudTotal);
 }
-
-
 
 int CalcularCosteCombinacion(TListaArboles CombinacionArboles)
 {
 	int a;
-	int CosteTotal=0;
+	int CosteTotal = 0;
 
-	for (a=0;a<CombinacionArboles.NumArboles;a++)
+	for (a = 0; a < CombinacionArboles.NumArboles; a++)
 	{
 		CosteTotal += ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].Valor;
 	}
 
-	return(CosteTotal);
+	return (CosteTotal);
 }
-
-
 
 void MostrarArboles(TListaArboles CombinacionArboles)
 {
 	int a;
 
 	// for (a=0;a<CombinacionArboles.NumArboles;a++)
-		// printf("%d ",ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].IdArbol);
+	// printf("%d ",ArbolesEntrada.Arboles[CombinacionArboles.Arboles[a]].IdArbol);
 
-  // for (;a<ArbolesEntrada.NumArboles;a++)
-    // printf("  ");
+	// for (;a<ArbolesEntrada.NumArboles;a++)
+	// printf("  ");
 }

@@ -292,7 +292,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 {
 	int MejorCombinacion = 0, CosteMejorCombinacion;
 	int Coste, Combinacion;
-	int CosteMejorCombinacionParcial[NUM_THREADS], MejorCombinacionParcial[NUM_THREADS];
+	int CosteMejorCombinacionParcial[omp_get_max_threads()], MejorCombinacionParcial[omp_get_max_threads()];
 
 	TListaArboles CombinacionArboles;
 	TVectorCoordenadas CoordArboles, CercaArboles;

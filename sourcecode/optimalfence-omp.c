@@ -76,6 +76,8 @@ int CalcularMaderaArbolesTalados(TListaArboles CombinacionArboles);
 int CalcularCosteCombinacion(TListaArboles CombinacionArboles);
 void MostrarArboles(TListaArboles CombinacionArboles);
 
+int NUM_THREADS = getenv("OMP_NUM_THREADS");
+
 int main(int argc, char *argv[])
 {
 	TListaArboles Optimo;
@@ -89,7 +91,6 @@ int main(int argc, char *argv[])
 	if (argc < 2 || argc > 3)
 		printf("Error Argumentos");
 
-	omp_set_num_threads(4);
 	//Capture first token time
 	gettimeofday(&tim, NULL);
 	tpivot1 = tim.tv_sec + (tim.tv_usec / 1000000.0);
@@ -289,19 +290,19 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 {
 	int MejorCombinacion = 0, CosteMejorCombinacion;
 	int Coste, Combinacion;
-	int CosteMejorCombinacionParcial[4], MejorCombinacionParcial[4];
+	int CosteMejorCombinacionParcial[NUM_THREADS], MejorCombinacionParcial[NUM_THREADS];
 
 	TListaArboles CombinacionArboles;
 	TVectorCoordenadas CoordArboles, CercaArboles;
 	int NumArboles, PuntosCerca;
 	float MaderaArbolesTalados;
 
-#pragma omp parallel
+	#pragma omp parallel
 	{
 		int id = omp_get_thread_num();
 		CosteMejorCombinacionParcial[id] = Optimo->Coste;
 
-#pragma omp for
+		#pragma omp for
 		for (Combinacion = PrimeraCombinacion; Combinacion < UltimaCombinacion; Combinacion++)
 		{
 			Coste = EvaluarCombinacionListaArboles(Combinacion);
@@ -314,7 +315,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 	}
 
 	CosteMejorCombinacion = Optimo->Coste;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < NUM_THREADS; i++)
 	{
 		if (CosteMejorCombinacion > CosteMejorCombinacionParcial[i])
 		{

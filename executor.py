@@ -3,7 +3,7 @@
 import os
 
 testFolder = "testbed"
-ncores = ['2', '4']
+ncores = ['1', '2', '4']
 
 def main():
     testFiles = [f for f in os.listdir(testFolder) if os.path.isfile(os.path.join(testFolder, f))]

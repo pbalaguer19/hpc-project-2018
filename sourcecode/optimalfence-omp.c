@@ -57,6 +57,7 @@ typedef enum { false,
 ////////////////////////
 
 TBosque ArbolesEntrada;
+int NUM_THREADS;
 
 //////////////////////////
 // Funtion definition   //
@@ -76,7 +77,6 @@ int CalcularMaderaArbolesTalados(TListaArboles CombinacionArboles);
 int CalcularCosteCombinacion(TListaArboles CombinacionArboles);
 void MostrarArboles(TListaArboles CombinacionArboles);
 
-int NUM_THREADS = getenv("OMP_NUM_THREADS");
 
 int main(int argc, char *argv[])
 {
@@ -87,6 +87,8 @@ int main(int argc, char *argv[])
 	char dest[255], outfile[255];
 	double tpivot1 = 0, tpivot2 = 0; //time counting
 	struct timeval tim;
+
+	NUM_THREADS = atoi(getenv("OMP_NUM_THREADS"));
 
 	if (argc < 2 || argc > 3)
 		printf("Error Argumentos");

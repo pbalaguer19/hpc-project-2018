@@ -1,0 +1,10 @@
+Input data:
+	Trees: 6.
+	Tree 1-> (0,0) Value:8, Long:3.
+	Tree 2-> (1,4) Value:3, Long:2.
+	Tree 3-> (2,1) Value:7, Long:1.
+	Tree 4-> (4,1) Value:2, Long:3.
+	Tree 5-> (3,5) Value:4, Long:6.
+	Tree 6-> (2,3) Value:9, Long:8.
+
+0.001750

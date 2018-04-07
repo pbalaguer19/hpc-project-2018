@@ -8,7 +8,7 @@
 
 #include "ConvexHull.h"
 
-#define DMaxArboles 25
+#define DMaxArboles 30
 #define DMaximoCoste 999999
 
 //////////////////////////
@@ -292,7 +292,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 {
 	int MejorCombinacion = 0, CosteMejorCombinacion;
 	int Coste, Combinacion;
-	int CosteMejorCombinacionParcial[omp_get_max_threads()], MejorCombinacionParcial[omp_get_max_threads()];
+	int CosteMejorCombinacionParcial[NUM_THREADS], MejorCombinacionParcial[NUM_THREADS];
 
 	TListaArboles CombinacionArboles;
 	TVectorCoordenadas CoordArboles, CercaArboles;

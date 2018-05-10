@@ -1,0 +1,31 @@
+Datos Entrada:
+	Árboles: 20.
+	Árbol 1-> (0,0) Coste:5, Long:5.
+	Árbol 2-> (1,2) Coste:4, Long:3.
+	Árbol 3-> (1,1) Coste:8, Long:9.
+	Árbol 4-> (1,3) Coste:10, Long:1.
+	Árbol 5-> (9,8) Coste:1, Long:10.
+	Árbol 6-> (3,4) Coste:5, Long:9.
+	Árbol 7-> (3,3) Coste:8, Long:3.
+	Árbol 8-> (2,1) Coste:4, Long:7.
+	Árbol 9-> (2,2) Coste:6, Long:2.
+	Árbol 10-> (5,7) Coste:3, Long:3.
+	Árbol 11-> (5,3) Coste:9, Long:10.
+	Árbol 12-> (10,3) Coste:3, Long:6.
+	Árbol 13-> (10,9) Coste:3, Long:8.
+	Árbol 14-> (1,5) Coste:4, Long:8.
+	Árbol 15-> (3,9) Coste:9, Long:1.
+	Árbol 16-> (8,5) Coste:8, Long:3.
+	Árbol 17-> (0,3) Coste:6, Long:6.
+	Árbol 18-> (4,10) Coste:3, Long:5.
+	Árbol 19-> (4,0) Coste:4, Long:1.
+	Árbol 20-> (10,1) Coste:7, Long:8.
+
+Rank: 0. Analizo las combinaciones 1 a 524288 
+Rank: 1. Analizo las combinaciones 524289 a 1048576 
+Rank: 1. La meva millor combinacio es 524302 i costa 14
+Rank: 0. La meva millor combinacio es 8202 i costa 8
+
+OPTIM: Combinacio numero 8202
+Cost: 8
+3 Arboles talados: 13 5 8                                   

@@ -1,0 +1,2 @@
+#!/bin/bash
+qsub -S /bin/bash -V -v SUFFIX=$1,TESTFILE=$2,CORES=$3 -N OptimalFenceMPI_$1_$2_$3 -wd $HOME/results/OptimalFence/MPI -o $HOME/results/OptimalFence/MPI -e $HOME/results/OptimalFence/MPI -pe mpich $3 ./mpi_helper.sh

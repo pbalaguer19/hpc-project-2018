@@ -1,0 +1,77 @@
+Datos Entrada:
+	Árboles: 6.
+	Árbol 1-> (0,0) Coste:8, Long:3.
+	Árbol 2-> (1,4) Coste:3, Long:2.
+	Árbol 3-> (2,1) Coste:7, Long:1.
+	Árbol 4-> (4,1) Coste:2, Long:3.
+	Árbol 5-> (3,5) Coste:4, Long:6.
+	Árbol 6-> (2,3) Coste:9, Long:8.
+
+Rank: 1. Analizo las combinaciones 3 a 4 
+Rank: 1. La meva millor combinacio es 0 i costa 999999
+Rank: 2. Analizo las combinaciones 5 a 6 
+Rank: 2. La meva millor combinacio es 5 i costa 12
+Rank: 3. Analizo las combinaciones 7 a 8 
+Rank: 3. La meva millor combinacio es 7 i costa 14
+Rank: 8. Analizo las combinaciones 17 a 18 
+Rank: 8. La meva millor combinacio es 0 i costa 999999
+Rank: 9. Analizo las combinaciones 19 a 20 
+Rank: 9. La meva millor combinacio es 0 i costa 999999
+Rank: 10. Analizo las combinaciones 21 a 22 
+Rank: 10. La meva millor combinacio es 22 i costa 9
+Rank: 11. Analizo las combinaciones 23 a 24 
+Rank: 11. La meva millor combinacio es 23 i costa 17
+Rank: 12. Analizo las combinaciones 25 a 26 
+Rank: 12. La meva millor combinacio es 0 i costa 999999
+Rank: 13. Analizo las combinaciones 27 a 28 
+Rank: 13. La meva millor combinacio es 27 i costa 20
+Rank: 14. Analizo las combinaciones 29 a 30 
+Rank: 14. La meva millor combinacio es 30 i costa 16
+Rank: 15. Analizo las combinaciones 31 a 32 
+Rank: 15. La meva millor combinacio es 31 i costa 24
+Rank: 16. Analizo las combinaciones 33 a 34 
+Rank: 16. La meva millor combinacio es 34 i costa 11
+Rank: 17. Analizo las combinaciones 35 a 36 
+Rank: 17. La meva millor combinacio es 36 i costa 13
+Rank: 4. Analizo las combinaciones 9 a 10 
+Rank: 4. La meva millor combinacio es 0 i costa 999999
+Rank: 5. Analizo las combinaciones 11 a 12 
+Rank: 5. La meva millor combinacio es 11 i costa 17
+Rank: 6. Analizo las combinaciones 13 a 14 
+Rank: 6. La meva millor combinacio es 14 i costa 13
+Rank: 7. Analizo las combinaciones 15 a 16 
+Rank: 7. La meva millor combinacio es 15 i costa 21
+Rank: 18. Analizo las combinaciones 37 a 38 
+Rank: 18. La meva millor combinacio es 38 i costa 15
+Rank: 19. Analizo las combinaciones 39 a 40 
+Rank: 19. La meva millor combinacio es 39 i costa 23
+Rank: 20. Analizo las combinaciones 41 a 42 
+Rank: 20. La meva millor combinacio es 41 i costa 24
+Rank: 21. Analizo las combinaciones 43 a 44 
+Rank: 21. La meva millor combinacio es 44 i costa 20
+Rank: 22. Analizo las combinaciones 45 a 46 
+Rank: 22. La meva millor combinacio es 46 i costa 22
+Rank: 23. Analizo las combinaciones 47 a 48 
+Rank: 23. La meva millor combinacio es 47 i costa 30
+Rank: 24. Analizo las combinaciones 49 a 50 
+Rank: 24. La meva millor combinacio es 50 i costa 14
+Rank: 25. Analizo las combinaciones 51 a 52 
+Rank: 25. La meva millor combinacio es 52 i costa 16
+Rank: 26. Analizo las combinaciones 53 a 54 
+Rank: 26. La meva millor combinacio es 54 i costa 18
+Rank: 27. Analizo las combinaciones 55 a 56 
+Rank: 27. La meva millor combinacio es 55 i costa 26
+Rank: 28. Analizo las combinaciones 57 a 58 
+Rank: 28. La meva millor combinacio es 58 i costa 21
+Rank: 29. Analizo las combinaciones 59 a 60 
+Rank: 29. La meva millor combinacio es 60 i costa 23
+Rank: 30. Analizo las combinaciones 61 a 62 
+Rank: 30. La meva millor combinacio es 62 i costa 25
+Rank: 0. Analizo las combinaciones 1 a 2 
+Rank: 0. La meva millor combinacio es 0 i costa 999999
+Rank: 31. Analizo las combinaciones 63 a 64 
+Rank: 31. La meva millor combinacio es 63 i costa 33
+
+OPTIM: Combinacio numero 22
+Cost: 9
+3 Arboles talados: 4 5 2       

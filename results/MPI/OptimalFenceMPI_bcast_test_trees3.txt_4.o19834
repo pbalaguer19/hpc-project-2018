@@ -1,0 +1,10 @@
+Datos Entrada:
+	Árboles: 3.
+	Árbol 1-> (3,0) Coste:10, Long:2.
+	Árbol 2-> (5,5) Coste:20, Long:25.
+	Árbol 3-> (7,-3) Coste:30, Long:32.
+Rank: 0, Optimo PARCIAL: Coste: 999999.000000 y tala 0 arboles
+Optimo FINAL: Coste: 20.000000 y tala 1 arboles
+Rank: 1, Optimo PARCIAL: Coste: 20.000000 y tala 1 arboles
+Rank: 2, Optimo PARCIAL: Coste: 30.000000 y tala 1 arboles
+Rank: 3, Optimo PARCIAL: Coste: 50.000000 y tala 2 arboles

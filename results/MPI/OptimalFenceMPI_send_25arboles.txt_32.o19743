@@ -1,0 +1,96 @@
+Datos Entrada:
+	Árboles: 25.
+	Árbol 1-> (0,0) Coste:8, Long:3.
+	Árbol 2-> (1,4) Coste:3, Long:2.
+	Árbol 3-> (2,1) Coste:7, Long:1.
+	Árbol 4-> (4,1) Coste:2, Long:3.
+	Árbol 5-> (3,5) Coste:4, Long:6.
+	Árbol 6-> (2,3) Coste:9, Long:8.
+	Árbol 7-> (2,4) Coste:10, Long:5.
+	Árbol 8-> (5,8) Coste:7, Long:2.
+	Árbol 9-> (3,1) Coste:6, Long:8.
+	Árbol 10-> (4,2) Coste:7, Long:7.
+	Árbol 11-> (2,2) Coste:6, Long:3.
+	Árbol 12-> (3,9) Coste:7, Long:4.
+	Árbol 13-> (5,7) Coste:2, Long:10.
+	Árbol 14-> (5,3) Coste:3, Long:3.
+	Árbol 15-> (7,1) Coste:5, Long:4.
+	Árbol 16-> (6,2) Coste:9, Long:5.
+	Árbol 17-> (6,3) Coste:1, Long:8.
+	Árbol 18-> (1,3) Coste:3, Long:6.
+	Árbol 19-> (1,6) Coste:4, Long:9.
+	Árbol 20-> (5,1) Coste:7, Long:10.
+	Árbol 21-> (3,3) Coste:5, Long:5.
+	Árbol 22-> (2,8) Coste:3, Long:5.
+	Árbol 23-> (7,3) Coste:1, Long:2.
+	Árbol 24-> (4,9) Coste:4, Long:4.
+	Árbol 25-> (4,8) Coste:10, Long:1.
+
+Rank: 1. Analizo las combinaciones 1048577 a 2097152 
+Rank: 2. Analizo las combinaciones 2097153 a 3145728 
+Rank: 3. Analizo las combinaciones 3145729 a 4194304 
+Rank: 4. Analizo las combinaciones 4194305 a 5242880 
+Rank: 5. Analizo las combinaciones 5242881 a 6291456 
+Rank: 6. Analizo las combinaciones 6291457 a 7340032 
+Rank: 7. Analizo las combinaciones 7340033 a 8388608 
+Rank: 8. Analizo las combinaciones 8388609 a 9437184 
+Rank: 9. Analizo las combinaciones 9437185 a 10485760 
+Rank: 10. Analizo las combinaciones 10485761 a 11534336 
+Rank: 11. Analizo las combinaciones 11534337 a 12582912 
+Rank: 12. Analizo las combinaciones 12582913 a 13631488 
+Rank: 13. Analizo las combinaciones 13631489 a 14680064 
+Rank: 14. Analizo las combinaciones 14680065 a 15728640 
+Rank: 15. Analizo las combinaciones 15728641 a 16777216 
+Rank: 16. Analizo las combinaciones 16777217 a 17825792 
+Rank: 17. Analizo las combinaciones 17825793 a 18874368 
+Rank: 18. Analizo las combinaciones 18874369 a 19922944 
+Rank: 19. Analizo las combinaciones 19922945 a 20971520 
+Rank: 20. Analizo las combinaciones 20971521 a 22020096 
+Rank: 21. Analizo las combinaciones 22020097 a 23068672 
+Rank: 22. Analizo las combinaciones 23068673 a 24117248 
+Rank: 23. Analizo las combinaciones 24117249 a 25165824 
+Rank: 24. Analizo las combinaciones 25165825 a 26214400 
+Rank: 25. Analizo las combinaciones 26214401 a 27262976 
+Rank: 26. Analizo las combinaciones 27262977 a 28311552 
+Rank: 27. Analizo las combinaciones 28311553 a 29360128 
+Rank: 28. Analizo las combinaciones 29360129 a 30408704 
+Rank: 29. Analizo las combinaciones 30408705 a 31457280 
+Rank: 30. Analizo las combinaciones 31457281 a 32505856 
+Rank: 0. Analizo las combinaciones 1 a 1048576 
+Rank: 31. Analizo las combinaciones 32505857 a 33554432 
+Rank: 31. La meva millor combinacio es 32507978 i costa 33
+Rank: 30. La meva millor combinacio es 31522888 i costa 26
+Rank: 23. La meva millor combinacio es 24182792 i costa 28
+Rank: 27. La meva millor combinacio es 28311562 i costa 26
+Rank: 29. La meva millor combinacio es 30408776 i costa 26
+Rank: 15. La meva millor combinacio es 15730760 i costa 22
+Rank: 22. La meva millor combinacio es 23134218 i costa 22
+Rank: 19. La meva millor combinacio es 19988546 i costa 27
+Rank: 17. La meva millor combinacio es 17891402 i costa 24
+Rank: 21. La meva millor combinacio es 22085704 i costa 26
+Rank: 26. La meva millor combinacio es 27263042 i costa 20
+Rank: 28. La meva millor combinacio es 29360200 i costa 19
+Rank: 7. La meva millor combinacio es 7340041 i costa 23
+Rank: 11. La meva millor combinacio es 11536458 i costa 20
+Rank: 25. La meva millor combinacio es 26214474 i costa 24
+Rank: 13. La meva millor combinacio es 14155848 i costa 22
+Rank: 14. La meva millor combinacio es 14688328 i costa 17
+Rank: 18. La meva millor combinacio es 18939970 i costa 20
+Rank: 3. La meva millor combinacio es 3670088 i costa 20
+Rank: 20. La meva millor combinacio es 21037130 i costa 20
+Rank: 5. La meva millor combinacio es 5242953 i costa 21
+Rank: 16. La meva millor combinacio es 16844872 i costa 18
+Rank: 9. La meva millor combinacio es 9961544 i costa 19
+Rank: 24. La meva millor combinacio es 25165898 i costa 17
+Rank: 6. La meva millor combinacio es 6291467 i costa 17
+Rank: 10. La meva millor combinacio es 10494026 i costa 15
+Rank: 12. La meva millor combinacio es 12582985 i costa 17
+Rank: 1. La meva millor combinacio es 1048651 i costa 19
+Rank: 4. La meva millor combinacio es 4194379 i costa 15
+Rank: 2. La meva millor combinacio es 2097219 i costa 15
+Rank: 8. La meva millor combinacio es 8388681 i costa 14
+Rank: 0. La meva millor combinacio es 2121 i costa 13
+
+OPTIM: Combinacio numero 2121
+Cost: 13
+4 Arboles talados: 1 17 13 4                                           

@@ -1,0 +1,14 @@
+Datos Entrada:
+	Árboles: 3.
+	Árbol 1-> (3,0) Coste:10, Long:2.
+	Árbol 2-> (5,5) Coste:20, Long:25.
+	Árbol 3-> (7,-3) Coste:30, Long:32.
+
+Rank: 0. Analizo las combinaciones 1 a 4 
+Rank: 0. La meva millor combinacio es 2 i costa 20
+Rank: 1. Analizo las combinaciones 5 a 8 
+Rank: 1. La meva millor combinacio es 5 i costa 40
+
+OPTIM: Combinacio numero 2
+Cost: 20
+1 Arboles talados: 2     

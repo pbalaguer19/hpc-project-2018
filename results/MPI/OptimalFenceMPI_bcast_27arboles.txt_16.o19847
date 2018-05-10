@@ -1,0 +1,46 @@
+Datos Entrada:
+	Árboles: 27.
+	Árbol 1-> (0,0) Coste:8, Long:3.
+	Árbol 2-> (1,4) Coste:3, Long:2.
+	Árbol 3-> (2,1) Coste:7, Long:1.
+	Árbol 4-> (4,1) Coste:2, Long:3.
+	Árbol 5-> (3,5) Coste:4, Long:6.
+	Árbol 6-> (2,3) Coste:9, Long:8.
+	Árbol 7-> (2,4) Coste:10, Long:5.
+	Árbol 8-> (5,8) Coste:7, Long:2.
+	Árbol 9-> (3,1) Coste:6, Long:8.
+	Árbol 10-> (4,2) Coste:7, Long:7.
+	Árbol 11-> (2,2) Coste:6, Long:3.
+	Árbol 12-> (3,9) Coste:7, Long:4.
+	Árbol 13-> (5,7) Coste:2, Long:10.
+	Árbol 14-> (5,3) Coste:3, Long:3.
+	Árbol 15-> (7,1) Coste:5, Long:4.
+	Árbol 16-> (6,2) Coste:9, Long:5.
+	Árbol 17-> (6,3) Coste:1, Long:8.
+	Árbol 18-> (1,3) Coste:3, Long:6.
+	Árbol 19-> (1,6) Coste:4, Long:9.
+	Árbol 20-> (5,1) Coste:7, Long:10.
+	Árbol 21-> (3,3) Coste:5, Long:5.
+	Árbol 22-> (2,8) Coste:3, Long:5.
+	Árbol 23-> (7,3) Coste:1, Long:2.
+	Árbol 24-> (4,9) Coste:4, Long:4.
+	Árbol 25-> (4,8) Coste:10, Long:1.
+	Árbol 26-> (10,10) Coste:6, Long:7.
+	Árbol 27-> (15,30) Coste:1, Long:8.
+Rank: 0, Optimo PARCIAL: Coste: 47.000000 y tala 11 arboles
+Rank: 8, Optimo PARCIAL: Coste: 7.000000 y tala 4 arboles
+Rank: 4, Optimo PARCIAL: Coste: 43.000000 y tala 11 arboles
+Rank: 12, Optimo PARCIAL: Coste: 7.000000 y tala 4 arboles
+Rank: 1, Optimo PARCIAL: Coste: 42.000000 y tala 10 arboles
+Rank: 9, Optimo PARCIAL: Coste: 9.000000 y tala 5 arboles
+Rank: 11, Optimo PARCIAL: Coste: 11.000000 y tala 5 arboles
+Rank: 3, Optimo PARCIAL: Coste: 44.000000 y tala 11 arboles
+Rank: 2, Optimo PARCIAL: Coste: 47.000000 y tala 12 arboles
+Rank: 6, Optimo PARCIAL: Coste: 45.000000 y tala 12 arboles
+Rank: 14, Optimo PARCIAL: Coste: 10.000000 y tala 5 arboles
+Rank: 10, Optimo PARCIAL: Coste: 10.000000 y tala 5 arboles
+Rank: 5, Optimo PARCIAL: Coste: 40.000000 y tala 10 arboles
+Rank: 13, Optimo PARCIAL: Coste: 9.000000 y tala 4 arboles
+Rank: 7, Optimo PARCIAL: Coste: 40.000000 y tala 11 arboles
+Rank: 15, Optimo PARCIAL: Coste: 18.000000 y tala 8 arboles
+Optimo FINAL: Coste: 7.000000 y tala 4 arboles

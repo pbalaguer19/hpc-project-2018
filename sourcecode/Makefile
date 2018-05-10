@@ -1,6 +1,8 @@
 all:
 	gcc -std=c99 optimalfence-omp.c -o OptimalFence -fopenmp -lm
-exec:
-	./OptimalFence ../testbed/test_trees6.txt output.res
+	mpicc optimalfence-mpi_send.c -o OptimalFenceMPI_send -lm
+	mpicc optimalfence-mpi_bcast.c -o OptimalFenceMPI_bcast -lm
+runMPI:
+	python executor.py MPI
 clear:
-	rm .res OptimalFence
+	rm .res OptimalFence OptimalFenceMPI*

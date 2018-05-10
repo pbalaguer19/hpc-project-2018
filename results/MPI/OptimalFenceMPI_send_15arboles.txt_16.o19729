@@ -1,0 +1,54 @@
+Datos Entrada:
+	Árboles: 15.
+	Árbol 1-> (0,0) Coste:5, Long:5.
+	Árbol 2-> (1,2) Coste:4, Long:3.
+	Árbol 3-> (1,1) Coste:8, Long:9.
+	Árbol 4-> (1,3) Coste:10, Long:1.
+	Árbol 5-> (9,8) Coste:1, Long:10.
+	Árbol 6-> (3,4) Coste:5, Long:9.
+	Árbol 7-> (3,3) Coste:8, Long:3.
+	Árbol 8-> (2,1) Coste:4, Long:7.
+	Árbol 9-> (2,2) Coste:6, Long:2.
+	Árbol 10-> (5,7) Coste:3, Long:3.
+	Árbol 11-> (5,3) Coste:9, Long:10.
+	Árbol 12-> (10,3) Coste:3, Long:6.
+	Árbol 13-> (10,9) Coste:3, Long:8.
+	Árbol 14-> (1,5) Coste:4, Long:8.
+	Árbol 15-> (3,9) Coste:9, Long:1.
+
+Rank: 1. Analizo las combinaciones 2049 a 4096 
+Rank: 2. Analizo las combinaciones 4097 a 6144 
+Rank: 4. Analizo las combinaciones 8193 a 10240 
+Rank: 5. Analizo las combinaciones 10241 a 12288 
+Rank: 4. La meva millor combinacio es 8206 i costa 15
+Rank: 1. La meva millor combinacio es 2574 i costa 21
+Rank: 2. La meva millor combinacio es 4110 i costa 11
+Rank: 3. Analizo las combinaciones 6145 a 8192 
+Rank: 3. La meva millor combinacio es 6158 i costa 21
+Rank: 5. La meva millor combinacio es 10254 i costa 25
+Rank: 6. Analizo las combinaciones 12289 a 14336 
+Rank: 7. Analizo las combinaciones 14337 a 16384 
+Rank: 8. Analizo las combinaciones 16385 a 18432 
+Rank: 9. Analizo las combinaciones 18433 a 20480 
+Rank: 10. Analizo las combinaciones 20481 a 22528 
+Rank: 11. Analizo las combinaciones 22529 a 24576 
+Rank: 12. Analizo las combinaciones 24577 a 26624 
+Rank: 13. Analizo las combinaciones 26625 a 28672 
+Rank: 6. La meva millor combinacio es 12302 i costa 19
+Rank: 7. La meva millor combinacio es 14856 i costa 27
+Rank: 14. Analizo las combinaciones 28673 a 30720 
+Rank: 0. Analizo las combinaciones 1 a 2048 
+Rank: 8. La meva millor combinacio es 16414 i costa 19
+Rank: 15. Analizo las combinaciones 30721 a 32768 
+Rank: 9. La meva millor combinacio es 18443 i costa 28
+Rank: 10. La meva millor combinacio es 20508 i costa 20
+Rank: 11. La meva millor combinacio es 22556 i costa 30
+Rank: 12. La meva millor combinacio es 24586 i costa 21
+Rank: 13. La meva millor combinacio es 26634 i costa 31
+Rank: 14. La meva millor combinacio es 28682 i costa 25
+Rank: 15. La meva millor combinacio es 30730 i costa 35
+Rank: 0. La meva millor combinacio es 526 i costa 11
+
+OPTIM: Combinacio numero 526
+Cost: 11
+4 Arboles talados: 13 12 5 8                       

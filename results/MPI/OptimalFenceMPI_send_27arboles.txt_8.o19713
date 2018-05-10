@@ -1,0 +1,50 @@
+Datos Entrada:
+	Árboles: 27.
+	Árbol 1-> (0,0) Coste:8, Long:3.
+	Árbol 2-> (1,4) Coste:3, Long:2.
+	Árbol 3-> (2,1) Coste:7, Long:1.
+	Árbol 4-> (4,1) Coste:2, Long:3.
+	Árbol 5-> (3,5) Coste:4, Long:6.
+	Árbol 6-> (2,3) Coste:9, Long:8.
+	Árbol 7-> (2,4) Coste:10, Long:5.
+	Árbol 8-> (5,8) Coste:7, Long:2.
+	Árbol 9-> (3,1) Coste:6, Long:8.
+	Árbol 10-> (4,2) Coste:7, Long:7.
+	Árbol 11-> (2,2) Coste:6, Long:3.
+	Árbol 12-> (3,9) Coste:7, Long:4.
+	Árbol 13-> (5,7) Coste:2, Long:10.
+	Árbol 14-> (5,3) Coste:3, Long:3.
+	Árbol 15-> (7,1) Coste:5, Long:4.
+	Árbol 16-> (6,2) Coste:9, Long:5.
+	Árbol 17-> (6,3) Coste:1, Long:8.
+	Árbol 18-> (1,3) Coste:3, Long:6.
+	Árbol 19-> (1,6) Coste:4, Long:9.
+	Árbol 20-> (5,1) Coste:7, Long:10.
+	Árbol 21-> (3,3) Coste:5, Long:5.
+	Árbol 22-> (2,8) Coste:3, Long:5.
+	Árbol 23-> (7,3) Coste:1, Long:2.
+	Árbol 24-> (4,9) Coste:4, Long:4.
+	Árbol 25-> (4,8) Coste:10, Long:1.
+	Árbol 26-> (10,10) Coste:6, Long:7.
+	Árbol 27-> (15,30) Coste:1, Long:8.
+
+Rank: 1. Analizo las combinaciones 16777217 a 33554432 
+Rank: 2. Analizo las combinaciones 33554433 a 50331648 
+Rank: 4. Analizo las combinaciones 67108865 a 83886080 
+Rank: 5. Analizo las combinaciones 83886081 a 100663296 
+Rank: 3. Analizo las combinaciones 50331649 a 67108864 
+Rank: 6. Analizo las combinaciones 100663297 a 117440512 
+Rank: 0. Analizo las combinaciones 1 a 16777216 
+Rank: 7. Analizo las combinaciones 117440513 a 134217728 
+Rank: 3. La meva millor combinacio es 59122325 i costa 40
+Rank: 7. La meva millor combinacio es 117440644 i costa 10
+Rank: 1. La meva millor combinacio es 25338519 i costa 44
+Rank: 2. La meva millor combinacio es 42377873 i costa 40
+Rank: 5. La meva millor combinacio es 84148356 i costa 10
+Rank: 6. La meva millor combinacio es 100663440 i costa 7
+Rank: 0. La meva millor combinacio es 8815255 i costa 42
+Rank: 4. La meva millor combinacio es 67371152 i costa 7
+
+OPTIM: Combinacio numero 67371152
+Cost: 7
+4 Arboles talados: 17 13 22 27                                               

@@ -1,0 +1,21 @@
+Datos Entrada:
+	Árboles: 6.
+	Árbol 1-> (0,0) Coste:8, Long:3.
+	Árbol 2-> (1,4) Coste:3, Long:2.
+	Árbol 3-> (2,1) Coste:7, Long:1.
+	Árbol 4-> (4,1) Coste:2, Long:3.
+	Árbol 5-> (3,5) Coste:4, Long:6.
+	Árbol 6-> (2,3) Coste:9, Long:8.
+
+Rank: 0. Analizo las combinaciones 1 a 16 
+Rank: 1. Analizo las combinaciones 17 a 32 
+Rank: 0. La meva millor combinacio es 5 i costa 12
+Rank: 1. La meva millor combinacio es 22 i costa 9
+Rank: 3. Analizo las combinaciones 49 a 64 
+Rank: 3. La meva millor combinacio es 50 i costa 14
+Rank: 2. Analizo las combinaciones 33 a 48 
+Rank: 2. La meva millor combinacio es 34 i costa 11
+
+OPTIM: Combinacio numero 22
+Cost: 9
+3 Arboles talados: 4 5 2       

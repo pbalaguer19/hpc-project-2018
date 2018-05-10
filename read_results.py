@@ -18,8 +18,8 @@ reg = re.compile(filename_pattern)
 def main():
     data = []
     resultFiles = [f for f in os.listdir(resultsFolder) if os.path.isfile(os.path.join(resultsFolder, f)) and ".e" in f ]
-    totalTime = 0
     for resultFile in resultFiles:
+        totalTime = 0
         nameMatch = reg.match(resultFile)
         with open(os.path.join(resultsFolder, resultFile), 'r') as f:
             for line in f.readlines():
@@ -32,7 +32,6 @@ def main():
                             time += float(match2.group(1)) * 60
                         time += float(match2.group(2))
                     totalTime += time
-        
         data.append((nameMatch.group(1), nameMatch.group(3) if nameMatch.group(3) else nameMatch.group(4), nameMatch.group(5), totalTime))
     df = pd.DataFrame.from_records(data, columns=["program", "trees", "cores", "time"])
     df.to_csv(os.path.join(resultsFolder, "data.csv"), index=False)

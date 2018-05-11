@@ -33,6 +33,7 @@ def main():
                     approach.ix[index, 'Efficiency'] = speedup / row.processes
 
     send.to_csv(os.path.join(resultsFolder, "send.csv"), index=False)
+    bcast.to_csv(os.path.join(resultsFolder, "bcast.csv"), index=False)
 
 if __name__ == '__main__':
     main()

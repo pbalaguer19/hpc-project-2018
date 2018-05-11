@@ -2,11 +2,14 @@
 
 import pandas as pd
 import numpy as np
+import os
 
 SEND_FILE = 'results/MPI/send.csv'
 BCAST_FILE = 'results/MPI/bcast.csv'
 trees = [3, 6, 15, 20, 25, 27]
 processes = [2, 4, 8, 16, 32]
+
+resultsFolder = "./results/MPI"
 
 def main():
     send = pd.read_csv(SEND_FILE, sep=",")
@@ -29,12 +32,7 @@ def main():
                     approach.ix[index, 'SpeedUp'] = speedup
                     approach.ix[index, 'Efficiency'] = speedup / row.processes
 
-
-
-    print(send.tail(15))
-    #print(bcast.tail(10))
-
-
+    send.to_csv(os.path.join(resultsFolder, "send.csv"), index=False)
 
 if __name__ == '__main__':
     main()

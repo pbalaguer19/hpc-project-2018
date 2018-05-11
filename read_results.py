@@ -6,8 +6,9 @@ import sys
 import pandas as pd
 
 resultsFolder = "/mnt/e/MPI"
+#resultsFolder = "./results/MPI"
 
-pattern = "^(user|sys)\t(\d+m\d+.\d+s)"
+pattern = "^(real)\t(\d+m\d+.\d+s)"
 time_pattern = "^(\d+)m(\d+.\d+)s"
 filename_pattern = "^.*(bcast|send)_(\w*(\d+)|(\d+).*).txt_(\d+)"
 
@@ -33,10 +34,11 @@ def main():
                         time += float(match2.group(2))
                     totalTime += time
         data.append((nameMatch.group(1), nameMatch.group(3) if nameMatch.group(3) else nameMatch.group(4), nameMatch.group(5), totalTime))
-    df = pd.DataFrame.from_records(data, columns=["program", "trees", "cores", "time"])
+    df = pd.DataFrame.from_records(data, columns=["program", "trees", "processes", "time"])
     df.to_csv(os.path.join(resultsFolder, "data.csv"), index=False)
+    df.loc[(df.program == 'send')].to_csv(os.path.join(resultsFolder, "send.csv"), index=False)
+    df.loc[(df.program == 'bcast')].to_csv(os.path.join(resultsFolder, "bcast.csv"), index=False)
         # sys.exit(0)
 
 if __name__ == '__main__':
     main()
-

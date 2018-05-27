@@ -1,4 +1,5 @@
 #include <mpi.h>
+#include <omp.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -353,18 +354,28 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 	int NumArboles, PuntosCerca;
 	float MaderaArbolesTalados;
 
-	CosteMejorCombinacion = Optimo->Coste;
-	for (Combinacion=PrimeraCombinacion; Combinacion<UltimaCombinacion; Combinacion++) {
-		Coste = EvaluarCombinacionListaArboles(Combinacion);
-		if (Coste < CosteMejorCombinacion ) {
-			CosteMejorCombinacion = Coste;
-			MejorCombinacion = Combinacion;
-		}
+  #pragma omp parallel
+	{
+  	CosteMejorCombinacion = Optimo->Coste;
 
-		if ((Combinacion%S)==0) {
-			 ConvertirCombinacionToArbolesTalados(MejorCombinacion, &OptimoParcial);
-			 MostrarArboles(OptimoParcial);
-		}
+    #pragma omp for
+  	for (Combinacion=PrimeraCombinacion; Combinacion<UltimaCombinacion; Combinacion++) {
+  		Coste = EvaluarCombinacionListaArboles(Combinacion);
+  		if (Coste < CosteMejorCombinacion ) {
+        #pragma omp critical
+        {
+          if (Coste < CosteMejorCombinacion ) {
+            CosteMejorCombinacion = Coste;
+      			MejorCombinacion = Combinacion;
+          }
+        }
+  		}
+
+  		if ((Combinacion%S)==0) {
+  			 ConvertirCombinacionToArbolesTalados(MejorCombinacion, &OptimoParcial);
+  			 MostrarArboles(OptimoParcial);
+  		}
+      }
     }
 
 	ConvertirCombinacionToArbolesTalados(MejorCombinacion, &OptimoParcial);

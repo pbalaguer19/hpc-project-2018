@@ -89,16 +89,9 @@ int main(int argc, char *argv[]) {
     int rank;
     int size;
 
-	double tpivot1=0,tpivot2=0; //time counting
-	struct timeval tim;
-
     MPI_Status st;
 
 	TListaArboles Optimo;
-
-	//Capture first token time
-	gettimeofday(&tim, NULL);
-	tpivot1 = tim.tv_sec+(tim.tv_usec/1000000.0);
 
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -196,11 +189,9 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	MPI_Barrier(MPI_COMM_WORLD);
-
-  MPI_Op getMinOp;
-  MPI_Op_create((MPI_User_function *) getMin, 1, &getMinOp);
-  TListaArboles optimoFinal;
+  	MPI_Op getMinOp;
+ 	MPI_Op_create((MPI_User_function *) getMin, 1, &getMinOp);
+  	TListaArboles optimoFinal;
 
 	if(MPI_Reduce(&Optimo, &optimoFinal, 1,
         TreeListType, getMinOp, MASTER, MPI_COMM_WORLD) != MPI_SUCCESS) {
@@ -221,10 +212,6 @@ int main(int argc, char *argv[]) {
     }
 
     MPI_Finalize();
-
-	gettimeofday(&tim, NULL);
-    tpivot2 = (tim.tv_sec+(tim.tv_usec/1000000.0));
-    // printf("\n%.6lf\n", tpivot2-tpivot1);
 
     return 0;
 }
@@ -353,7 +340,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 	int NumArboles, PuntosCerca;
 	float MaderaArbolesTalados;
 
-  #pragma omp parallel
+  	#pragma omp parallel
 	{
 		int Combinacion, Coste;
   	CosteMejorCombinacion = Optimo->Coste;
@@ -381,8 +368,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 	ConvertirCombinacionToArbolesTalados(MejorCombinacion, &OptimoParcial);
 	MostrarArboles(OptimoParcial);
 
-	if (CosteMejorCombinacion == Optimo->Coste)
-		return false;  // No se ha encontrado una combinacin mejor.
+	if (CosteMejorCombinacion == Optimo->Coste) return false;
 
 	// Asignar combinacin encontrada.
 	ConvertirCombinacionToArbolesTalados(MejorCombinacion, Optimo);

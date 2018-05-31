@@ -345,8 +345,7 @@ bool CalcularCercaOptima(PtrListaArboles Optimo, int rank, int size){
 }
 
 bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, PtrListaArboles Optimo){
-	int Combinacion, MejorCombinacion=0, CosteMejorCombinacion;
-	int Coste;
+	int MejorCombinacion=0, CosteMejorCombinacion;
 	TListaArboles OptimoParcial;
 
 	TListaArboles CombinacionArboles;
@@ -356,6 +355,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
 
   #pragma omp parallel
 	{
+		int Combinacion, Coste;
   	CosteMejorCombinacion = Optimo->Coste;
 
     #pragma omp for
@@ -376,7 +376,7 @@ bool CalcularCombinacionOptima(int PrimeraCombinacion, int UltimaCombinacion, Pt
   			 MostrarArboles(OptimoParcial);
   		}
       }
-    }
+  }
 
 	ConvertirCombinacionToArbolesTalados(MejorCombinacion, &OptimoParcial);
 	MostrarArboles(OptimoParcial);

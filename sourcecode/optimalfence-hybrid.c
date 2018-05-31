@@ -199,7 +199,7 @@ int main(int argc, char *argv[]) {
             exit(-1);
     }
 
-	MPI_Barrier(MPI_COMM_WORLD);
+	// MPI_Barrier(MPI_COMM_WORLD);
 
     if(rank == MASTER) {
         printf("Optimo FINAL: Coste: %f y tala %d arboles\n",

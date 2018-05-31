@@ -5,12 +5,11 @@ import re
 import sys
 import pandas as pd
 
-resultsFolder = "/mnt/e/MPI"
-#resultsFolder = "./results/MPI"
+resultsFolder = "/mnt/e/Hybrid"
 
 pattern = "^(real)\t(\d+m\d+.\d+s)"
 time_pattern = "^(\d+)m(\d+.\d+)s"
-filename_pattern = "^.*(bcast|send)_(\w*(\d+)|(\d+).*).txt_(\d+)"
+filename_pattern = "^.*_(\w*(\d+)|(\d+).*).txt_(\d+)_(\d+)"
 
 prog = re.compile(pattern)
 prog2 = re.compile(time_pattern)
@@ -33,12 +32,12 @@ def main():
                             time += float(match2.group(1)) * 60
                         time += float(match2.group(2))
                     totalTime += time
-        data.append((nameMatch.group(1), nameMatch.group(3) if nameMatch.group(3) else nameMatch.group(4), nameMatch.group(5), totalTime))
-    df = pd.DataFrame.from_records(data, columns=["program", "trees", "processes", "time"])
+        data.append((nameMatch.group(2) if nameMatch.group(2) else nameMatch.group(3), nameMatch.group(4), nameMatch.group(5), totalTime))
+    df = pd.DataFrame.from_records(data, columns=["trees", "MPI_Nodes", "OMP_Threads", "time"])
     df.to_csv(os.path.join(resultsFolder, "data.csv"), index=False)
-    df.loc[(df.program == 'send')].to_csv(os.path.join(resultsFolder, "send.csv"), index=False)
-    df.loc[(df.program == 'bcast')].to_csv(os.path.join(resultsFolder, "bcast.csv"), index=False)
-        # sys.exit(0)
+    # df.loc[(df.program == 'send')].to_csv(os.path.join(resultsFolder, "send.csv"), index=False)
+    # df.loc[(df.program == 'bcast')].to_csv(os.path.join(resultsFolder, "bcast.csv"), index=False)
+    # sys.exit(0)
 
 if __name__ == '__main__':
     main()

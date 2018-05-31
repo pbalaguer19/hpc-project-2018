@@ -4,7 +4,7 @@ import os
 import sys 
 
 testFolder = "testbed"
-ncores = ['4', '8']
+ncores = ['2', '4', '8', '16', '32']
 ompcores = ['2', '4']
 MPI=False
 MPI_executables = ["send", "bcast"]
@@ -19,7 +19,8 @@ def main():
                     os.system("./run_mpi.sh {0} {1} {2}".format(executable, testFile, cores))
             elif Hybrid:
                 for ompcore in ompcores: 
-                    os.system("./run_hybrid.sh {0} {1} {2}".format(testFile, cores, ompcore))
+                    if (int(ompcore) * int(cores)) <= 32:
+                        os.system("./run_hybrid.sh {0} {1} {2}".format(testFile, cores, ompcore))
             else:
                 os.system("./run.sh {0} {1}".format(testFile, cores))
 
